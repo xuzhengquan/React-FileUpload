@@ -19,9 +19,9 @@ const IEFormGroup = [true]
 let xhrList = []
 let currentXHRID = 0
 
-const PT = React.PropTypes
-
-const FileUpload = React.createClass({
+const PT = require('prop-types')
+const createClass = require('create-react-class')
+const FileUpload = createClass({
 
     /*类型验证*/
     propTypes: {
