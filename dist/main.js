@@ -52,13 +52,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	/**
 	 * Created by cheesu on 2015/8/17.
@@ -320,26 +320,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	            formData = this.appendFieldsToFormData(formData);
 	        }
 	        if (!this._withoutFileUpload) {
-	            (function () {
-	                var fieldNameType = _typeof(_this2.fileFieldName);
+	            var fieldNameType = _typeof(this.fileFieldName);
 
-	                /*判断是用什么方式作为formdata item 的 name*/
-	                Object.keys(_this2.files).forEach(function (key) {
-	                    if (key == 'length') return;
+	            /*判断是用什么方式作为formdata item 的 name*/
+	            Object.keys(this.files).forEach(function (key) {
+	                if (key == 'length') return;
 
-	                    if (fieldNameType == 'function') {
-	                        var file = _this2.files[key];
-	                        var fileFieldName = _this2.fileFieldName(file);
-	                        formData.append(fileFieldName, file);
-	                    } else if (fieldNameType == 'string') {
-	                        var _file = _this2.files[key];
-	                        formData.append(_this2.fileFieldName, _file);
-	                    } else {
-	                        var _file2 = _this2.files[key];
-	                        formData.append(_file2.name, _file2);
-	                    }
-	                });
-	            })();
+	                if (fieldNameType == 'function') {
+	                    var file = _this2.files[key];
+	                    var fileFieldName = _this2.fileFieldName(file);
+	                    formData.append(fileFieldName, file);
+	                } else if (fieldNameType == 'string') {
+	                    var _file = _this2.files[key];
+	                    formData.append(_this2.fileFieldName, _file);
+	                } else {
+	                    var _file2 = _this2.files[key];
+	                    formData.append(_file2.name, _file2);
+	                }
+	            });
 	        }
 	        /*If we need to add fields after file data append here*/
 	        if (!this.textBeforeFiles) {
@@ -354,14 +352,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var paramStr = '';
 
 	        if (param) {
-	            (function () {
-	                var paramArr = [];
-	                param['_'] = mill;
-	                Object.keys(param).forEach(function (key) {
-	                    return paramArr.push(key + '=' + param[key]);
-	                });
-	                paramStr = '?' + paramArr.join('&');
-	            })();
+	            var paramArr = [];
+	            param['_'] = mill;
+	            Object.keys(param).forEach(function (key) {
+	                return paramArr.push(key + '=' + param[key]);
+	            });
+	            paramStr = '?' + paramArr.join('&');
 	        }
 	        var targeturl = baseUrl + paramStr;
 
@@ -632,7 +628,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        };
 	    },
 	    getUserAgent: function getUserAgent() {
-	        var userAgentString = this.props.options.userAgent;
+	        var userAgentString = this.props.options && this.props.options.userAgent;
 	        var navigatorIsAvailable = typeof navigator !== 'undefined';
 	        if (!navigatorIsAvailable && !userAgentString) {
 	            throw new Error('\`options.userAgent\` must be set rendering react-fileuploader in situations when \`navigator\` is not defined in the global namespace. (on the server, for example)');
@@ -755,10 +751,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                width: '200px',
 	                opacity: 0,
 	                filter: 'alpha(opacity=0)'
-	            };
 
-	            /*是否限制了文件后缀，以及是否disabled*/
-	            var restAttrs = {
+	                /*是否限制了文件后缀，以及是否disabled*/
+	            };var restAttrs = {
 	                accept: this.accept,
 	                disabled: isDisabled
 	            };
@@ -823,13 +818,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = FileUpload;
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
