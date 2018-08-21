@@ -21,6 +21,7 @@ let currentXHRID = 0
 
 const PT = require('prop-types')
 const createClass = require('create-react-class')
+
 const FileUpload = createClass({
 
     /*类型验证*/
