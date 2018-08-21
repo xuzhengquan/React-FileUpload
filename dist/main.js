@@ -83,6 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var PT = __webpack_require__(2);
 	var createClass = __webpack_require__(9);
+
 	var FileUpload = createClass({
 
 	    /*类型验证*/
